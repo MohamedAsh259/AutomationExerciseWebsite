@@ -1,11 +1,17 @@
 import com.shaft.driver.SHAFT;
 import jdk.jfr.Description;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AddProductToCartTests {
     private SHAFT.GUI.WebDriver driver ;
+    private SHAFT.TestData.JSON testData;
+    @BeforeClass
+    public void beforeClass() {
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/AddProductToCartData.json");
+    }
 
     @BeforeMethod
     @Description("this is a setup class for our test")
@@ -15,7 +21,7 @@ public class AddProductToCartTests {
 
     @Test(description = "addProductToCart")
     private void addProductToCart(){
-        new addProductToCart(driver).navigateToURL("https://automationexercise.com/")
+        new addProductToCart(driver).navigateToURL(testData.getTestData("WebSite-URL"))
                 .clickOnProductButton()
                 .clickOnFirstProductViewButton()
                 .clickOnFirstProductAddToCartButton()

@@ -1,23 +1,20 @@
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.annotations.BeforeClass;
 
 public class LoginPage {
     private SHAFT.GUI.WebDriver driver ;
-
     //Constructor
     public LoginPage(SHAFT.GUI.WebDriver driver){
         this.driver = driver ;
     }
-
     //Locators
     private By loginPageButton = By.xpath("//a[@href=\"/login\"]");
     private By loginEmailTextField = By.xpath("//input[@data-qa=\"login-email\"]");
     private By loginPasswordTextField = By.xpath("//input[@data-qa=\"login-password\"]");
     private By loginButton = By.xpath("//button[@data-qa=\"login-button\"]");
     private By logoutButton = By.xpath("//a[@href=\"/logout\"]");
-
-
     //Actions
     public LoginPage navigateToURL(String URL){
         driver.browser().navigateToURL(URL);
@@ -57,3 +54,4 @@ public class LoginPage {
     }
 
 }
+
