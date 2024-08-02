@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class PlaceOrderTests {
+public class PlaceOrderBeforeCheckOutTests {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
     @BeforeClass
@@ -21,21 +21,10 @@ public class PlaceOrderTests {
     private void PlaceOrder() {
         new PlaceOrder(driver).navigateToURL(testData.getTestData("WebSite-URL"));
         new PlaceOrder(driver).validateHomePageVisibility();
-        new PlaceOrder(driver).clickOnProductHomeButton()
-                .clickOnFirstProductViewButton()
-                .clickOnFirstProductAddToCartButton()
-                .clickOnFirstProductContinueShoppingButton()
-                .navigateBack()
-                .clickOnSecondProductViewButton()
-                .clickOnSecondProductAddToCartButton()
-                .clickOnSecondProductContinueShoppingButton()
-                .clickOnHomePageCartButton();
-        new PlaceOrder(driver).validateCartPageVisibility();
-        new PlaceOrder(driver).clickOnCheckOutButton()
-                .clickOnLoginRegisterButton()
-                .fillName(testData.getTestData("SignupData['Name-s']")).
-                fillEmail(testData.getTestData("SignupData['Email']")).
-                clickOnSignUpButton()
+        new PlaceOrder(driver).clickOnLoginSignupButton()
+                .fillName(testData.getTestData("SignupData['Name-s']"))
+                .fillEmail(testData.getTestData("SignupData['Email']"))
+                .clickOnSignUpButton()
                 .clickOnTitleButton()
                 .fillAccountName(testData.getTestData("AccountInformation['Name-A']"))
                 .fillAccountPassword(testData.getTestData("AccountInformation['Password']"))
@@ -58,8 +47,17 @@ public class PlaceOrderTests {
         new PlaceOrder(driver).verifyThatAccountCreatedIsVisible();
         new PlaceOrder(driver).clickOnContinueButton();
         new PlaceOrder(driver).verifyLoggedInAsMohamedIsVisible();
-        new PlaceOrder(driver).clickOnHomePageCartButton()
-                .clickOnCheckOutButton();
+        new PlaceOrder(driver).clickOnProductHomeButton()
+                .clickOnFirstProductViewButton()
+                .clickOnFirstProductAddToCartButton()
+                .clickOnFirstProductContinueShoppingButton()
+                .navigateBack()
+                .clickOnSecondProductViewButton()
+                .clickOnSecondProductAddToCartButton()
+                .clickOnSecondProductContinueShoppingButton()
+                .clickOnHomePageCartButton();
+        new PlaceOrder(driver).validateCartPageVisibility();
+        new PlaceOrder(driver).clickOnCheckOutButton();
         new PlaceOrder(driver).validateAddressFieldVisibility();
         new PlaceOrder(driver).validateAddressFieldContent();
         new PlaceOrder(driver).validateReviewOrderFieldVisibility();

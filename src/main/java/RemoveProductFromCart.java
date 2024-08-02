@@ -60,15 +60,19 @@ public class RemoveProductFromCart {
     @Step("Verify that home page is visible successfully")
     public void validateHomePageVisibility() {
         driver.element().verifyThat(homePageLogoFeild).isVisible().perform();
+
     }
 
     @Step("Verify that cart page is displayed")
     public void validateCartPageVisibility() {
         driver.element().verifyThat(checkOutButton).isVisible().perform();
+
     }
+
     @Step("Verify that product is removed from the cart")
     public void validateProductIsRemoved() {
         driver.element().verifyThat(emptyCartMessage).isVisible().perform();
+
     }
 
 }

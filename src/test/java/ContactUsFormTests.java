@@ -21,7 +21,7 @@ public class ContactUsFormTests {
     }
 
     @Test(description = "ContactUsForm")
-    private void PlaceOrder() {
+    private void ContactUsForm() {
         new ContactUsForm(driver).navigateToURL(testData.getTestData("WebSite-URL"));
         new ContactUsForm(driver).validateHomePageVisibility();
         new ContactUsForm(driver).clickOnContactUsButton();
@@ -30,8 +30,7 @@ public class ContactUsFormTests {
                 .fillEmail(testData.getTestData("Email"))
                 .fillSubject(testData.getTestData("Subject"))
                 .fillMessage(testData.getTestData("Message"));
-        new ContactUsForm(driver)
-                .uploadFile()
+        new ContactUsForm(driver).uploadFile()
                 .submitForm()
                 .handleAlert();
         new ContactUsForm(driver).validateSuccessMessageVisibility();

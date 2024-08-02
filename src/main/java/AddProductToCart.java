@@ -2,11 +2,11 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import com.shaft.validation.Validations;
-public class addProductToCart {
+public class AddProductToCart {
     private SHAFT.GUI.WebDriver driver ;
 
     //Constructor
-    public addProductToCart(SHAFT.GUI.WebDriver driver){
+    public AddProductToCart(SHAFT.GUI.WebDriver driver){
         this.driver = driver ;
     }
 
@@ -29,45 +29,45 @@ public class addProductToCart {
     private By secondProductTotalPrice = By.xpath("//tr[@id=\"product-1\"]//p[@class=\"cart_total_price\"]");
 
     //Actions
-    public addProductToCart navigateToURL(String URL){
+    public AddProductToCart navigateToURL(String URL){
         driver.browser().navigateToURL(URL);
         return this ;
     }
 
-    public addProductToCart clickOnProductButton(){
+    public AddProductToCart clickOnProductButton(){
         driver.element().click(homePageProductButton);
         return this ;
     }
-    public addProductToCart clickOnFirstProductViewButton(){
+    public AddProductToCart clickOnFirstProductViewButton(){
         driver.element().click(firstProductViewButton);
         return this ;
     }
-    public addProductToCart clickOnFirstProductAddToCartButton(){
+    public AddProductToCart clickOnFirstProductAddToCartButton(){
         driver.element().click(addToCartButton);
         return this ;
     }
-    public addProductToCart clickOnFirstProductContinueShoppingButton(){
+    public AddProductToCart clickOnFirstProductContinueShoppingButton(){
         driver.element().click(continueShoppingButton);
         return this ;
     }
-    public addProductToCart navigateBack(){
+    public AddProductToCart navigateBack(){
         driver.browser().navigateBack();
         return this ;
     }
-    public addProductToCart clickOnSecondProductViewButton(){
+    public AddProductToCart clickOnSecondProductViewButton(){
         driver.element().click(secondProductVeiwButton);
         return this ;
     }
 
-    public addProductToCart clickOnSecondProductAddToCartButton(){
+    public AddProductToCart clickOnSecondProductAddToCartButton(){
         driver.element().click(secondProductAddToCart);
         return this ;
     }
-    public addProductToCart clickOnSecondProductContinueShoppingButton(){
+    public AddProductToCart clickOnSecondProductContinueShoppingButton(){
         driver.element().click(continueShoppingButton);
         return this ;
     }
-    public addProductToCart clickOnHomePageCartButton(){
+    public AddProductToCart clickOnHomePageCartButton(){
         driver.element().click(homePageCartButton);
         return this ;
     }
