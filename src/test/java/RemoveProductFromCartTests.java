@@ -20,16 +20,16 @@ public class RemoveProductFromCartTests {
 
     @Test(description = "removeProduct")
     private void removeProduct() {
-        new RemoveProductFromCart(driver).navigateToURL(testData.getTestData("WebSite-URL"));
-        new RemoveProductFromCart(driver).validateHomePageVisibility();
-        new RemoveProductFromCart(driver).clickOnProductButton()
+        new productPage(driver).navigateToURL(testData.getTestData("WebSite-URL"));
+        new productPage(driver).validateHomePageVisibility();
+        new productPage(driver).clickOnProductButton()
                 .clickOnFirstProductViewButton()
                 .clickOnFirstProductAddToCartButton()
                 .clickOnFirstProductContinueShoppingButton()
                 .clickOnHomePageCartButton();
-        new RemoveProductFromCart(driver).validateCartPageVisibility();
-        new RemoveProductFromCart(driver).clickOnRemoveProductButton();
-        new RemoveProductFromCart(driver).validateProductIsRemoved();
+        new productPage(driver).validateCartPageVisibility();
+        new productPage(driver).clickOnRemoveProductButton();
+        new productPage(driver).validateProductIsRemoved();
     }
         @AfterMethod
         @Description("Close browser after test")

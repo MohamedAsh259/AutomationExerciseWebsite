@@ -20,19 +20,19 @@ public class AllProductsAndProductDetailTests {
     }
     @Test(description = "AllProductsAndProductDetailTests")
     private void allProductsAndProductDetail() {
-        new AllProductsAndProductDetailPage(driver).navigateToURL(testData.getTestData("WebSite-URL"));
-        new AllProductsAndProductDetailPage(driver).validateHomePageVisibility();
-        new AllProductsAndProductDetailPage(driver).clickOnProductButton();
-        new AllProductsAndProductDetailPage(driver).validateAllProductsVisibility();
-        new AllProductsAndProductDetailPage(driver).validateProductListVisibility();
-        new AllProductsAndProductDetailPage(driver).clickOnFirstProductViewButton();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductPageVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductNameVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductCategoryVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductPriceVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductAvailabilityVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductConditionVisibility();
-        new AllProductsAndProductDetailPage(driver).validateFirstProductBrandVisibility();
+        new cartPage(driver).navigateToURL(testData.getTestData("WebSite-URL"));
+        new cartPage(driver).validateHomePageVisibility();
+        new cartPage(driver).clickOnProductButton();
+        new cartPage(driver).validateAllProductsVisibility();
+        new cartPage(driver).validateProductListVisibility();
+        new cartPage(driver).clickOnFirstProductViewButton();
+        new cartPage(driver).validateFirstProductPageVisibility();
+        new cartPage(driver).validateFirstProductNameVisibility();
+        new cartPage(driver).validateFirstProductCategoryVisibility();
+        new cartPage(driver).validateFirstProductPriceVisibility();
+        new cartPage(driver).validateFirstProductAvailabilityVisibility();
+        new cartPage(driver).validateFirstProductConditionVisibility();
+        new cartPage(driver).validateFirstProductBrandVisibility();
     }
     @AfterMethod
     @Description("Close browser after test")

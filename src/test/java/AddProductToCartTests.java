@@ -21,7 +21,7 @@ public class AddProductToCartTests {
 
     @Test(description = "addProductToCart")
     private void addProductToCart(){
-        new AddProductToCart(driver).navigateToURL(testData.getTestData("WebSite-URL"))
+        new homePage(driver).navigateToURL(testData.getTestData("WebSite-URL"))
                 .clickOnProductButton()
                 .clickOnFirstProductViewButton()
                 .clickOnFirstProductAddToCartButton()
@@ -33,11 +33,11 @@ public class AddProductToCartTests {
                 .clickOnHomePageCartButton();
 
         //perform assertion
-        new AddProductToCart(driver).validateHomePageVisibility();
-        new AddProductToCart(driver).VerifyBothProductsAreAddedToCart();
-        new AddProductToCart(driver).VerifyPricesOfTwoProducts();
-        new AddProductToCart(driver).VerifyQuantitiesOfTwoProducts();
-        new AddProductToCart(driver).VerifyTotalPricesOfTwoProducts();
+        new homePage(driver).validateHomePageVisibility();
+        new homePage(driver).VerifyBothProductsAreAddedToCart();
+        new homePage(driver).VerifyPricesOfTwoProducts();
+        new homePage(driver).VerifyQuantitiesOfTwoProducts();
+        new homePage(driver).VerifyTotalPricesOfTwoProducts();
     }
     @AfterMethod
     @Description("Close browser after test")

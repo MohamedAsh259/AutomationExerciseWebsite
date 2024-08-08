@@ -334,58 +334,7 @@ public class PlaceOrder {
         driver.element().verifyThat(loggedInAs).isVisible().perform();
     }
 
-    @Step("Verify that cart page is displayed")
-    public void validateCartPageVisibility() {
-        driver.element().verifyThat(checkOutButton).isVisible().perform();
-    }
 
-    @Step("Verify that address field is visible")
-    public void validateAddressFieldVisibility() {
-        driver.element().verifyThat(addressFieldData).isVisible().perform();
-    }
-
-    @Step("Verify that address text is like given")
-    public void validateAddressFieldContent() {
-        Assertions.assertEquals("cairo", driver.element().getText(addressContentOne), "Verify the address one Content");
-        Assertions.assertEquals("cairo-c", driver.element().getText(addressContentTwo), "Verify the address two Content");
-    }
-
-    @Step("Verify that Review Order field is visible")
-    public void validateReviewOrderFieldVisibility() {
-        driver.element().verifyThat(reviewContentField).isVisible().perform();
-    }
-
-    @Step("Verify first product content")
-    public void validateFirstProductContent() {
-        Assertions.assertEquals("Blue Top", driver.element().getText(productName1), "Verify product name for the second item");
-        Assertions.assertEquals("Women > Tops", driver.element().getText(productCategory1), "Verify product category for the second item");
-        Assertions.assertEquals("Rs. 500", driver.element().getText(productPrice1), "Verify product price for the second item");
-        Assertions.assertEquals("1", driver.element().getText(productQuantity1), "Verify product quantity for the second item");
-        Assertions.assertEquals("Rs. 500", driver.element().getText(productTotalPrice1), "Verify product total price for the second item");
-    }
-
-    @Step("Verify second product content")
-    public void validateSecondProductContent() {
-        Assertions.assertEquals("Men Tshirt", driver.element().getText(productName2), "Verify product name for the first item");
-        Assertions.assertEquals("Men > Tshirts", driver.element().getText(productCategory2), "Verify product category for the first item");
-        Assertions.assertEquals("Rs. 400", driver.element().getText(productPrice2), "Verify product price for the first item");
-        Assertions.assertEquals("1", driver.element().getText(productQuantity2), "Verify product quantity for the first item");
-        Assertions.assertEquals("Rs. 400", driver.element().getText(productTotalPrice2), "Verify product total price for the first item");
-    }
-
-    @Step("Verify that expected product price equal actual")
-    public void validateActualProductPrice() {
-        String totalPrice1Text = driver.element().getText(productTotalPrice1).replace("Rs. ", "").replace(",", "");
-        String totalPrice2Text = driver.element().getText(productTotalPrice2).replace("Rs. ", "").replace(",", "");
-        String actualTotalPriceText = driver.element().getText(totalProductPrices).replace("Rs. ", "").replace(",", "");
-        int totalPrice1 = Integer.parseInt(totalPrice1Text);
-        int totalPrice2 = Integer.parseInt(totalPrice2Text);
-        //expected
-        int expectedTotal = totalPrice1 + totalPrice2;
-        //actual
-        int actualTotal = Integer.parseInt(actualTotalPriceText);
-        Assertions.assertEquals(expectedTotal, actualTotal, "Verify the total price of all items in the cart");
-    }
 
     @Step("Verify that successfull order message is visible")
     public void validateSuccessfullOrderMessageVisibility() {

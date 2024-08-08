@@ -19,36 +19,7 @@ public class RegisterUser {
     private By homePageLogoFeild = By.xpath("//div[@class=\"logo pull-left\"]//img[@src=\"/static/images/home/logo.png\"]");
     private By loginHomePageButton = By.xpath("//a[@href=\"/login\"]");
     private By newUserSignup = By.xpath("//div[@class=\"signup-form\"]//h2");
-    private By nameField = By.xpath("//input[@name=\"name\"]");
-    private By emailField = By.xpath("//input[@data-qa=\"signup-email\"]");
-    private By signupButton = By.xpath("//button[@data-qa=\"signup-button\"]");
-    private By enterAccountInformationText = By.xpath("//b[contains(text(), 'Enter Account Information')]");
-    private By createAccountnameField = By.xpath("//input[@name=\"name\"]");
-    private By createAccountEmailField = By.xpath("//input[@name=\"email\"]");
-    private By createAccountPasswordField = By.xpath("//input[@name=\"password\"]");
-    private By daysForDateOfBirth = By.xpath("//select[@name=\"days\"]");
-    private By monthsForDateOfBirth = By.xpath("//select[@name=\"months\"]");
-    private By yearsForDateOfBirth = By.xpath("//select[@name=\"years\"]");
-    private By tilteButton = By.xpath("//input[@id=\"id_gender1\"]");
-    private By newsletter = By.xpath("//input[@id=\"newsletter\"]");
-    private By speicalOfferButton = By.xpath("//input[@name=\"optin\"]");
-    private By addressFirstNameField = By.xpath("//input[@name=\"first_name\"]");
-    private By addressLastNameField = By.xpath("//input[@name=\"last_name\"]");
-    private By companyNameField = By.xpath("//input[@ name=\"company\"]");
-    private By addressField = By.xpath("//input[@name=\"address1\"]");
-    private By addressFieldTwo = By.xpath("//input[@name=\"address2\"]");
-    private By countryName = By.xpath("//select[@name=\"country\"]");
-    private By stateName = By.xpath("//input[@name=\"state\"]");
-    private By cityName = By.xpath("//input[@name=\"city\"]");
-    private By zipCode = By.xpath("//input[@name=\"zipcode\"]");
-    private By mobileNumber = By.xpath("//input[@name=\"mobile_number\"]");
-    private By createAccountButton = By.xpath("//button[@data-qa=\"create-account\"]");
-    private By accountCreatedVerification = By.xpath("//h2[@data-qa=\"account-created\"]");
-    private By continueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
-    private By loggedInAs = By.xpath("//a[contains(text(), \"Logged in as\")]");
-    private By deleteAccountButton = By.xpath("//a[@href=\"/delete_account\"]");
-    private By accountDeletedVerification = By.xpath("//h2[@data-qa=\"account-deleted\"]/b");
-    private By deleteContinueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
+
     //Actions
     //Before create account
     public RegisterUser navigateToURL(String URL){
