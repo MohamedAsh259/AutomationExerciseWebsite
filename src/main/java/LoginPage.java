@@ -1,7 +1,6 @@
 import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.testng.annotations.BeforeClass;
 
 public class LoginPage {
     private SHAFT.GUI.WebDriver driver ;
@@ -14,44 +13,51 @@ public class LoginPage {
     private By loginEmailTextField = By.xpath("//input[@data-qa=\"login-email\"]");
     private By loginPasswordTextField = By.xpath("//input[@data-qa=\"login-password\"]");
     private By loginButton = By.xpath("//button[@data-qa=\"login-button\"]");
-    private By logoutButton = By.xpath("//a[@href=\"/logout\"]");
-    //Actions
-    public LoginPage navigateToURL(String URL){
-        driver.browser().navigateToURL(URL);
-        return this ;
-    }
+    private By newUserSignupText = By.xpath("//div[@class=\"signup-form\"]//h2");
+    private By signupNameField = By.xpath("//input[@name=\"name\"]");
+    private By signupEmailField = By.xpath("//input[@data-qa=\"signup-email\"]");
+    private By signupButton = By.xpath("//button[@data-qa=\"signup-button\"]");
 
+    //Actions
     public LoginPage clickOnLoginPageButton(){
         driver.element().click(loginPageButton);
         return this ;
     }
-
     public LoginPage fillEmail(String email){
         driver.element().type(loginEmailTextField,email);
         return this ;
     }
-
     public LoginPage fillPassword(String password){
         driver.element().type(loginPasswordTextField,password);
         return this ;
     }
-
     public LoginPage fillLoginData(String email,String password){
         fillEmail(email);
         fillPassword(password);
         return this ;
     }
-
     public LoginPage clickLoginButton(){
         driver.element().click(loginButton);
         return this ;
     }
-
-    //Assertions
-    @Step("Validate that the user is logged in")
-    public void validateLogin(){
-        driver.element().verifyThat(logoutButton).isVisible().perform();
+    public LoginPage fillSignupName(String Name){
+        driver.element().type(signupNameField,Name);
+        return this ;
+    }
+    public LoginPage fillSignupEmail(String Email){
+        driver.element().type(signupEmailField,Email);
+        return this ;
+    }
+    public LoginPage clickSignupButton(){
+        driver.element().click(signupButton);
+        return this ;
     }
 
+    //Assertions
+    @Step("Verify that New User Signup is visible")
+    public LoginPage validateVisibilityOfNewUserSignup(){
+        driver.element().verifyThat(newUserSignupText).isVisible().perform();
+        return this;
+    }
 }
 
