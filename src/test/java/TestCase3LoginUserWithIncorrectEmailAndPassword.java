@@ -10,7 +10,6 @@ public class TestCase3LoginUserWithIncorrectEmailAndPassword {
     private SHAFT.TestData.JSON testData;
     private HomePage homePage;
     private LoginPage loginPage;
-    private SignupPage signupPage;
 
     @BeforeClass
     public void beforeClass() {
@@ -19,28 +18,24 @@ public class TestCase3LoginUserWithIncorrectEmailAndPassword {
     }
 
     @BeforeMethod
-    @Description("This is the setup method for our test. Initializes the WebDriver.")
+    @Description("Initializes the WebDriver and Pages")
     public void setup() {
         driver = new SHAFT.GUI.WebDriver();
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
-        signupPage = new SignupPage(driver);
     }
 
     @Test(description = "Login User with Incorrect Email And Password")
-    private void registerUser() {
+    private void testCase3LoginUserWithIncorrectEmailAndPassword() {
         // Navigate to website URL
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .validateHomePageVisibility()  // Assert that home page is visible
                 .clickOnSignupLoginButton();  // Click "Sign Up / Login" button
-
-        // Fill in sign-up details and proceed
         loginPage.validateVisibilityOfLoginToYourAccount()  // Verify Login to your account is visible
                 .fillEmail(testData.getTestData("Email"))
                 .fillPassword(testData.getTestData("Password"))
                 .clickLoginButton() // Proceed to sign-up
                 .verifyErrorYourEmailOrPasswordIsIncorrectVisibility();
-
     }
 
     @AfterMethod

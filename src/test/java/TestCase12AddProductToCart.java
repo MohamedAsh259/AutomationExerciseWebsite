@@ -8,30 +8,39 @@ import org.testng.annotations.Test;
 public class TestCase12AddProductToCart {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
+    private HomePage homePage;
+    private ProductsPage productsPage;
+    private ProductDetailPage productDetailPage;
+    private CartPage cartPage;
+
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/AddProductToCartData.json");
     }
 
     @BeforeMethod
-    @Description("this is a setup class for our test")
+    @Description("Initializes the WebDriver and Pages")
     public void setup (){
         driver = new SHAFT.GUI.WebDriver();
-    }
+        homePage = new HomePage(driver);
+        productsPage = new ProductsPage(driver);
+        productDetailPage = new ProductDetailPage(driver);
+        cartPage = new CartPage(driver);
 
-    @Test(description = "addProductToCart")
+    }
+    @Test(description = "AddProductToCart")
     private void addProductToCart(){
-        new HomePage (driver).navigateToURL(testData.getTestData("WebSite-URL"))
+        homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .validateHomePageVisibility()
                 .clickOnProductButton();
-        new ProductsPage (driver).clickOnFirstProductViewButton();
-        new ProductDetailPage (driver).clickOnProductAddToCartButton()
+        productsPage.clickOnFirstProductViewButton();
+        productDetailPage.clickOnProductAddToCartButton()
                 .clickOnProductContinueShoppingButton()
                 .navigateBack();
-        new ProductsPage (driver).clickOnSecondProductViewButton();
-        new ProductDetailPage (driver).clickOnProductAddToCartButton()
+        productsPage.clickOnSecondProductViewButton();
+        productDetailPage.clickOnProductAddToCartButton()
                 .clickOnViewCartButton();
-        new CartPage (driver).VerifyBothProductsAreAddedToCart()
+        cartPage.VerifyBothProductsAreAddedToCart()
                 .VerifyPricesOfTwoProducts()
                 .VerifyQuantitiesOfTwoProducts()
                 .VerifyTotalPricesOfTwoProducts();

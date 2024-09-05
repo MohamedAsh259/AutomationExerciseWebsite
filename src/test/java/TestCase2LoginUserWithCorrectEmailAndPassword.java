@@ -5,6 +5,8 @@ import org.testng.annotations.*;
 public class TestCase2LoginUserWithCorrectEmailAndPassword {
     private SHAFT.GUI.WebDriver driver;
     private SHAFT.TestData.JSON testData;
+    private HomePage homePage;
+    private LoginPage loginPage;
 
     @BeforeClass
     public void beforeClass() {
@@ -12,18 +14,20 @@ public class TestCase2LoginUserWithCorrectEmailAndPassword {
     }
 
     @BeforeMethod
-    @Description("this is a setup class for our test")
+    @Description("Initializes the WebDriver and Pages")
     public void setup (){
         driver = new SHAFT.GUI.WebDriver();
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
     }
 
     @Test(description = "Validate user login")
     private void validateLogin(){
-        new HomePage(driver).navigateToURL(testData.getTestData("WebSite-URL"))
+       homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .clickOnSignupLoginButton();
-        new LoginPage(driver).fillLoginData(testData.getTestData("Email"),testData.getTestData("Password"))
+       loginPage.fillLoginData(testData.getTestData("Email"),testData.getTestData("Password"))
                 .clickLoginButton();
-        new HomePage(driver).validateLogin();
+       homePage.validateLogin();
     }
     @AfterMethod
     @Description("Close browser after test")

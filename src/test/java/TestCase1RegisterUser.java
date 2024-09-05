@@ -8,25 +8,36 @@ import org.testng.annotations.Test;
 public class TestCase1RegisterUser {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
+    private HomePage homePage;
+    private LoginPage loginPage;
+    private  SignupPage signupPage;
+
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/RegisterUserData.json");
     }
+
     @BeforeMethod
-    @Description("this is a setup class for our test")
-    public void setup (){
+    @Description("Initializes the WebDriver and Pages")
+    public void setup() {
         driver = new SHAFT.GUI.WebDriver();
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        signupPage = new SignupPage(driver);
     }
-    @Test(description = "RegisterUser")
-    private void RegisterUser() {
-    new HomePage (driver).navigateToURL(testData.getTestData("WebSite-URL"))
-    .validateHomePageVisibility()
-    .clickOnSignupLoginButton();
-    new LoginPage (driver).validateVisibilityOfNewUserSignup()
+
+    @Test(description = "Create Account For Register User")
+    private void testCase1RegisterUser() {
+                // Navigate to website URL
+        homePage.navigateToURL(testData.getTestData("WebSite-URL"))
+              .validateHomePageVisibility()  // Assert that home page is visible
+              .clickOnSignupLoginButton();
+        loginPage.validateVisibilityOfNewUserSignup()
+                // Perform registration steps
             .fillSignupName(testData.getTestData("SignupData['Name-s']"))
             .fillSignupEmail(testData.getTestData("SignupData['Email']"))
             .clickSignupButton();
-    new SignupPage(driver).verifyThatEnterAccountInformationIsVisible()
+        signupPage.verifyThatEnterAccountInformationIsVisible()
             .clickOnTitleButton()
             .fillAccountName(testData.getTestData("AccountInformation['Name-A']"))
             .fillAccountPassword(testData.getTestData("AccountInformation['Password']"))
@@ -48,11 +59,13 @@ public class TestCase1RegisterUser {
             .clickOnCreateAccountButton()
             .verifyThatAccountCreatedIsVisible()
             .clickOnContinueButton();
-    new HomePage (driver).validateLogin()
+        homePage.validateLogin()
+                // Validate and delete account
             .clickOnDeleteAccountButton()
             .validateAccountDeletedVerificationVisibility()
             .clickOnContinueDeleteButton();
     }
+
 @AfterMethod
 @Description("Close browser after test")
 public void teardown(){
