@@ -17,6 +17,8 @@ public class LoginPage {
     private By signupNameField = By.xpath("//input[@name=\"name\"]");
     private By signupEmailField = By.xpath("//input[@data-qa=\"signup-email\"]");
     private By signupButton = By.xpath("//button[@data-qa=\"signup-button\"]");
+    private By loginToYourAccount = By.xpath("//div[@class=\"login-form\"]/h2");
+    private By errorMessage = By.xpath("//p[text()='Your email or password is incorrect!']");
 
     //Actions
     public LoginPage clickOnLoginPageButton(){
@@ -54,10 +56,20 @@ public class LoginPage {
     }
 
     //Assertions
+
     @Step("Verify that New User Signup is visible")
     public LoginPage validateVisibilityOfNewUserSignup(){
         driver.element().verifyThat(newUserSignupText).isVisible().perform();
         return this;
     }
+    public LoginPage validateVisibilityOfLoginToYourAccount(){
+        driver.element().verifyThat(loginToYourAccount).isVisible().perform();
+        return this;
+    }
+    public LoginPage verifyErrorYourEmailOrPasswordIsIncorrectVisibility(){
+        driver.element().verifyThat(errorMessage).isVisible().perform();
+        return this;
+    }
+
 }
 
