@@ -1,3 +1,0 @@
-[ReportManager] Successfully created attachment 'SHAFT Engine Logs - Execution log' @05-09-2024 22:33:59.0762 PM
-[ReportManager] Successfully created attachment 'SHAFT Engine Logs - Execution log: 20240905-223359' @05-09-2024 22:33:59.0767 PM
-[ReportManager] Successfully created attachment 'HTML - Checkpoints Report' @05-09-2024 22:33:59.0775 PM

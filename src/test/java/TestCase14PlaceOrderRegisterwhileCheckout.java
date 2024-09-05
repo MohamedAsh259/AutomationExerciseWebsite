@@ -8,35 +8,52 @@ import org.testng.annotations.Test;
 public class TestCase14PlaceOrderRegisterwhileCheckout {
         private SHAFT.GUI.WebDriver driver ;
         private SHAFT.TestData.JSON testData;
+    private HomePage homePage;
+    private ProductsPage productsPage;
+    private ProductDetailPage productDetailPage;
+    private CartPage cartPage;
+    private LoginPage loginPage;
+    private SignupPage signupPage;
+    private CheckoutPage checkoutPage;
+    private PaymentPage paymentPage;
+
         @BeforeClass
         public void beforeClass() {
             testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/PlaceOrderData.json");
         }
         @BeforeMethod
-        @Description("this is a setup class for our test")
+        @Description("Initializes the WebDriver and Pages")
         public void setup (){
             driver = new SHAFT.GUI.WebDriver();
+            homePage = new HomePage(driver);
+            productsPage = new ProductsPage(driver);
+            productDetailPage = new ProductDetailPage(driver);
+            cartPage = new CartPage(driver);
+            loginPage = new LoginPage(driver);
+            signupPage = new SignupPage(driver);
+            checkoutPage = new CheckoutPage(driver);
+            paymentPage = new PaymentPage(driver);
         }
         @Test(description = "PlaceOrder")
         private void PlaceOrder() {
-            new HomePage(driver).navigateToURL(testData.getTestData("WebSite-URL"))
+            homePage.navigateToURL(testData.getTestData("WebSite-URL"))
             .validateHomePageVisibility()
             .clickOnProductButton();
-            new ProductsPage(driver).clickOnFirstProductViewButton();
-            new ProductDetailPage(driver).clickOnProductAddToCartButton()
+            productsPage.clickOnFirstProductViewButton();
+            productDetailPage.clickOnProductAddToCartButton()
                     .clickOnProductContinueShoppingButton()
                     .navigateBack();
-            new ProductsPage(driver).clickOnSecondProductViewButton();
-            new ProductDetailPage(driver).clickOnProductAddToCartButton()
+           productsPage.clickOnSecondProductViewButton();
+           productDetailPage.clickOnProductAddToCartButton()
                     .clickOnProductContinueShoppingButton();
-            new HomePage(driver).clickOnCartButton();
-            new CartPage(driver).validateCartPageVisibility()
+            homePage.clickOnCartButton();
+            cartPage.validateCartPageVisibility()
                     .clickOnCheckOutButton()
                     .clickOnLoginRegisterCheckoutButton();
-            new LoginPage(driver).fillSignupName(testData.getTestData("SignupData['Name-s']"))
+            loginPage.fillSignupName(testData.getTestData("SignupData['Name-s']"))
                     .fillSignupEmail(testData.getTestData("SignupData['Email']"))
                     .clickSignupButton();
-            new SignupPage(driver).clickOnTitleButton()
+            signupPage.clickOnTitleButton()
                     .fillAccountName(testData.getTestData("AccountInformation['Name-A']"))
                     .fillAccountPassword(testData.getTestData("AccountInformation['Password']"))
                     .selectDayOfBirthDate(testData.getTestData("AccountInformation['Day']"))
@@ -57,25 +74,25 @@ public class TestCase14PlaceOrderRegisterwhileCheckout {
                     .clickOnCreateAccountButton()
                     .verifyThatAccountCreatedIsVisible()
                     .clickOnContinueButton();
-            new HomePage(driver).validateLogin()
+            homePage.validateLogin()
                     .clickOnCartButton();
-            new CartPage(driver).clickOnCheckOutButton();
-            new CheckoutPage(driver).validateAddressFieldVisibility()
+            cartPage.clickOnCheckOutButton();
+           checkoutPage.validateAddressFieldVisibility()
             .validateAddressFieldContent().validateReviewOrderFieldVisibility()
             .validateFirstProductContent()
             .validateSecondProductContent()
             .validateActualProductsPrices()
                     .fillComment(testData.getTestData("CheckOutComment"))
                     .clickOnPlaceOrderButton();
-            new PaymentPage(driver).fillCardNumber(testData.getTestData("CardInformation['fillCardNumber']"))
+          paymentPage.fillCardNumber(testData.getTestData("CardInformation['fillCardNumber']"))
                     .fillCardName(testData.getTestData("CardInformation['fillCardName']"))
                     .fillCardCvc(testData.getTestData("CardInformation['fillCardCvc']"))
                     .fillCardExpirationMonth(testData.getTestData("CardInformation['fillCardExpirationMonth']"))
                     .fillCardExpirationYear(testData.getTestData("CardInformation['fillCardExpirationYear']"))
                     .clickOnPayAndConfirmOrderButton();
-            new ProductDetailPage(driver).navigateBack();
-            new PaymentPage(driver).validateSuccessfullOrderMessageVisibility();
-            new HomePage(driver).clickOnDeleteAccountButton()
+            productDetailPage.navigateBack();
+            paymentPage.validateSuccessfullOrderMessageVisibility();
+            homePage.clickOnDeleteAccountButton()
                     .validateAccountDeletedVerificationVisibility();
         }
         @AfterMethod

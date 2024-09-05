@@ -1,5 +1,0 @@
-[ReportManager] Setting "targetOperatingSystem" property with "windows". @05-09-2024 22:32:54.0818 PM
-[ReportManager] Capabilities {acceptInsecureCerts: true, browserName: chrome, goog:chromeOptions: {args: [--remote-debugging-pipe, --no-sandbox, --start-maximized], extensions: [], prefs: {download.default_directory: C:\Users\moham\IdeaProjects..., download.prompt_for_download: false, profile.default_content_settings.popups: 0}}, pageLoadStrategy: normal, timeouts: {pageLoad: 60000, script: 60000}, unhandledPromptBehavior: ignore, webSocketUrl: true} @05-09-2024 22:32:55.0357 PM
-[ReportManager] Attempting to run locally on: "Windows | Chrome". @05-09-2024 22:32:55.0359 PM
-[ReportManager] Identifying OS/Driver combination. Please note that if a new browser/driver executable will be downloaded it may take some time depending on your connection... @05-09-2024 22:32:55.0360 PM
-[ReportManager] Successfully Opened: "Windows | Chrome". @05-09-2024 22:32:58.0011 PM
