@@ -85,7 +85,9 @@ public class CartPage {
     }
     @Step("Verify that product Quantity added successfully")
     public CartPage VerifyProductQuantityAddedToCart() {
-        Validations.assertThat().object(firstProductQuantity).isEqualTo(4).perform();
+        String quantityText = driver.element().getText(firstProductQuantity);
+        int actualQuantity = Integer.parseInt(quantityText.trim());
+        Assertions.assertEquals(4,actualQuantity);
         return this;
     }
     // For Two product Added Through Home Page Or Any Other Page
