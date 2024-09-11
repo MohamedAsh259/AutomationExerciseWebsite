@@ -8,6 +8,10 @@ import org.testng.annotations.Test;
 public class TestCase17RemoveProductsFromCart {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
+    private HomePage homePage;
+    private ProductsPage productsPage;
+    private ProductDetailPage productDetailPage;
+    private CartPage cartPage;
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/RemoveProductFromCartData.json");
@@ -16,22 +20,26 @@ public class TestCase17RemoveProductsFromCart {
     @Description("this is a setup class for our test")
     public void setup (){
         driver = new SHAFT.GUI.WebDriver();
+        homePage = new HomePage(driver);
+        productsPage = new ProductsPage(driver);
+        productDetailPage = new ProductDetailPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @Test(description = "removeProduct")
     private void removeProduct() {
-        new HomePage(driver).navigateToURL(testData.getTestData("WebSite-URL"))
+        homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .validateHomePageVisibility()
                 .clickOnProductButton();
-        new ProductsPage(driver).clickOnFirstProductViewButton();
-        new ProductDetailPage(driver).clickOnProductAddToCartButton()
+        productsPage.clickOnFirstProductViewButton();
+        productDetailPage.clickOnProductAddToCartButton()
                 .clickOnProductContinueShoppingButton()
                 .navigateBack();
-        new ProductsPage(driver).clickOnSecondProductViewButton();
-        new ProductDetailPage(driver).clickOnProductAddToCartButton()
+        productsPage.clickOnSecondProductViewButton();
+        productDetailPage.clickOnProductAddToCartButton()
                 .clickOnProductContinueShoppingButton();
-        new HomePage(driver).clickOnCartButton();
-        new CartPage(driver).validateCartPageVisibility()
+        homePage.clickOnCartButton();
+        cartPage.validateCartPageVisibility()
                 .clickOnRemoveProductButton()
                 .validateCartIsEmpty();
     }

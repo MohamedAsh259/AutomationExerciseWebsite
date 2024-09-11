@@ -43,8 +43,8 @@ public class TestCase14PlaceOrderRegisterwhileCheckout {
             productDetailPage.clickOnProductAddToCartButton()
                     .clickOnProductContinueShoppingButton()
                     .navigateBack();
-           productsPage.clickOnSecondProductViewButton();
-           productDetailPage.clickOnProductAddToCartButton()
+            productsPage.clickOnSecondProductViewButton();
+            productDetailPage.clickOnProductAddToCartButton()
                     .clickOnProductContinueShoppingButton();
             homePage.clickOnCartButton();
             cartPage.validateCartPageVisibility()
@@ -84,7 +84,7 @@ public class TestCase14PlaceOrderRegisterwhileCheckout {
             .validateActualProductsPrices()
                     .fillComment(testData.getTestData("CheckOutComment"))
                     .clickOnPlaceOrderButton();
-          paymentPage.fillCardNumber(testData.getTestData("CardInformation['fillCardNumber']"))
+            paymentPage.fillCardNumber(testData.getTestData("CardInformation['fillCardNumber']"))
                     .fillCardName(testData.getTestData("CardInformation['fillCardName']"))
                     .fillCardCvc(testData.getTestData("CardInformation['fillCardCvc']"))
                     .fillCardExpirationMonth(testData.getTestData("CardInformation['fillCardExpirationMonth']"))

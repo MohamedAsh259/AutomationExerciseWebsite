@@ -2,6 +2,8 @@ import com.shaft.driver.SHAFT;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import static io.appium.java_client.touch.offset.ElementOption.element;
+
 public class ProductsPage {
     private SHAFT.GUI.WebDriver driver;
 
@@ -16,10 +18,42 @@ public class ProductsPage {
     private By secondProductVeiwButton = By.xpath("//ul[@class=\"nav nav-pills nav-justified\"]//a [@href=\"/product_details/2\"]");
     private By allProductsText = By.xpath("//h2[@class=\"title text-center\"]");
     private By productList = By.xpath("//div[@class=\"features_items\"]");
-    private By continueShoppingButton = By.xpath("//button[@class=\"btn btn-success close-modal btn-block\"]");
-    //Actions
+    private By searchTextField = By.xpath("//input[@name=\"search\"]");
+    private By searchButton = By.xpath("//i[@class=\"fa fa-search\"]");
+    private By searchedProductText = By.xpath("//h2[@class=\"title text-center\"]");
+    private By featuredItems = By.xpath("//div[@class=\"features_items\"]");
+    private By firstProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"28\"]");
+    private By secondProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"29\"]");
+    private By thirdProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"30\"]");
+    private By continueShopping = By.xpath("//button[@class=\"btn btn-success close-modal btn-block\"]");
+
+   // Action
     public ProductsPage clickOnProductButton() {
         driver.element().click(homePageProductButton);
+        return this;
+    }
+    public ProductsPage fillProductName(String productName){
+        driver.element().type(searchTextField,productName);
+        return this ;
+    }
+    public ProductsPage clickOnSearchButton() {
+        driver.element().click(searchButton);
+        return this;
+    }
+    public ProductsPage ClickOnAddFirstProductToCartButton() {
+        driver.element().click(firstProductAddToCartButton);
+        return this;
+    }
+        public ProductsPage ClickOnAddSecondProductToCartButton() {
+        driver.element().click(secondProductAddToCartButton);
+        return this;
+    }
+    public ProductsPage ClickOnAddThirdProductToCartButton() {
+        driver.element().click(thirdProductAddToCartButton);
+        return this;
+    }
+    public ProductsPage clickOnContinueShoppingButton() {
+        driver.element().click(continueShopping);
         return this;
     }
     public ProductsPage clickOnFirstProductViewButton() {
@@ -30,18 +64,26 @@ public class ProductsPage {
         driver.element().click(secondProductVeiwButton);
         return this;
     }
-    public ProductsPage clickOnContinueShoppingButton() {
-        driver.element().click(continueShoppingButton);
-        return this;
-    }
+
 //Assertions
+
     @Step("Verify that all products text is visible successfully")
     public ProductsPage validateAllProductsVisibility() {
         driver.element().verifyThat(allProductsText).isVisible().perform();
         return this;
     }
+    @Step("Verify Searched Products Text is visible")
+    public ProductsPage validateSearchedProductsVisibility() {
+        driver.element().verifyThat(searchedProductText).isVisible().perform();
+        return this;
+    }
+    @Step("Verify  all the products related to search are visible")
+    public ProductsPage validateProductsRelatedToSearchVisibility() {
+        driver.element().assertThat(featuredItems).exists().perform();
+        return this;
+    }
     @Step("Verify that product list is visible successfully")
-    public  ProductsPage validateProductListVisibility() {
+    public ProductsPage validateProductListVisibility() {
         driver.element().verifyThat(productList).isVisible().perform();
         return this;
     }

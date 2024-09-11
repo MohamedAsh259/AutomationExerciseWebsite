@@ -3,11 +3,13 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class LoginPage {
-    private SHAFT.GUI.WebDriver driver ;
+    private SHAFT.GUI.WebDriver driver;
+
     //Constructor
-    public LoginPage(SHAFT.GUI.WebDriver driver){
-        this.driver = driver ;
+    public LoginPage(SHAFT.GUI.WebDriver driver) {
+        this.driver = driver;
     }
+
     //Locators
     private By loginPageButton = By.xpath("//a[@href=\"/login\"]");
     private By loginEmailTextField = By.xpath("//input[@data-qa=\"login-email\"]");
@@ -18,58 +20,70 @@ public class LoginPage {
     private By signupEmailField = By.xpath("//input[@data-qa=\"signup-email\"]");
     private By signupButton = By.xpath("//button[@data-qa=\"signup-button\"]");
     private By loginToYourAccount = By.xpath("//div[@class=\"login-form\"]/h2");
-    private By errorMessage = By.xpath("//p[text()='Your email or password is incorrect!']");
+    private By yourEmailOrPasswordIsIncorrectError = By.xpath("//p[text()='Your email or password is incorrect!']");
+    private By emailAddressAlreadyExistError = By.xpath("//p[text()='Email Address already exist!']");
 
     //Actions
-    public LoginPage clickOnLoginPageButton(){
+    public LoginPage clickOnLoginPageButton() {
         driver.element().click(loginPageButton);
-        return this ;
+        return this;
     }
-    public LoginPage fillEmail(String email){
-        driver.element().type(loginEmailTextField,email);
-        return this ;
+
+    public LoginPage fillEmail(String email) {
+        driver.element().type(loginEmailTextField, email);
+        return this;
     }
-    public LoginPage fillPassword(String password){
-        driver.element().type(loginPasswordTextField,password);
-        return this ;
+
+    public LoginPage fillPassword(String password) {
+        driver.element().type(loginPasswordTextField, password);
+        return this;
     }
-    public LoginPage fillLoginData(String email,String password){
+
+    public LoginPage fillLoginData(String email, String password) {
         fillEmail(email);
         fillPassword(password);
-        return this ;
+        return this;
     }
-    public LoginPage clickLoginButton(){
+
+    public LoginPage clickLoginButton() {
         driver.element().click(loginButton);
-        return this ;
+        return this;
     }
-    public LoginPage fillSignupName(String Name){
-        driver.element().type(signupNameField,Name);
-        return this ;
+
+    public LoginPage fillSignupName(String Name) {
+        driver.element().type(signupNameField, Name);
+        return this;
     }
-    public LoginPage fillSignupEmail(String Email){
-        driver.element().type(signupEmailField,Email);
-        return this ;
+
+    public LoginPage fillSignupEmail(String Email) {
+        driver.element().type(signupEmailField, Email);
+        return this;
     }
-    public LoginPage clickSignupButton(){
+
+    public LoginPage clickSignupButton() {
         driver.element().click(signupButton);
-        return this ;
+        return this;
     }
 
     //Assertions
 
     @Step("Verify that New User Signup is visible")
-    public LoginPage validateVisibilityOfNewUserSignup(){
+    public LoginPage validateVisibilityOfNewUserSignup() {
         driver.element().verifyThat(newUserSignupText).isVisible().perform();
         return this;
     }
-    public LoginPage validateVisibilityOfLoginToYourAccount(){
+
+    public LoginPage validateVisibilityOfLoginToYourAccount() {
         driver.element().verifyThat(loginToYourAccount).isVisible().perform();
         return this;
     }
-    public LoginPage verifyErrorYourEmailOrPasswordIsIncorrectVisibility(){
-        driver.element().verifyThat(errorMessage).isVisible().perform();
+
+    public LoginPage verifyErrorYourEmailOrPasswordIsIncorrectVisibility() {
+        driver.element().verifyThat(yourEmailOrPasswordIsIncorrectError).isVisible().perform();
         return this;
     }
-
+    public LoginPage verifyEmailAddressAlreadyExistErrorVisibility() {
+        driver.element().verifyThat(emailAddressAlreadyExistError).isVisible().perform();
+        return this;
+    }
 }
-

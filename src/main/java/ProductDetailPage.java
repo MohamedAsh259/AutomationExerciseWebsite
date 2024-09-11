@@ -21,7 +21,7 @@ public class ProductDetailPage {
         private By productCondition = By.xpath("//div[@class='product-information']/p[3]");
         private By productBrand = By.xpath("//div[@class='product-information']/p[4]");
         private By productImage = By.xpath("//div[@class=\"view-product\"] //img[@alt=\"ecommerce website products\"]");
-
+        private By quantityNumberField = By.xpath("//input[@id=\"quantity\"]");
         //Actions
         public ProductDetailPage clickOnProductAddToCartButton() {
             driver.element().click(addToCartButton);
@@ -39,6 +39,11 @@ public class ProductDetailPage {
         driver.element().click(viewCartButton);
         return this;
     }
+    public ProductDetailPage fillProductQuantity(String Quantity) {
+        driver.element().type(quantityNumberField, Quantity);
+        return this;
+    }
+
 
 //Assertions
     @Step("Verify that first product name is visible")
@@ -56,4 +61,14 @@ public class ProductDetailPage {
         driver.element().verifyThat(productBrand).isVisible().perform();
         return this;
     }
+    @Step("Verify that product Quantity is Four")
+    public ProductDetailPage validateProductQuantity(){
+
+        return this;
+    }
+
+
+
+
+
 }

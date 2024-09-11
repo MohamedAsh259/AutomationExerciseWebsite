@@ -21,6 +21,13 @@ public class HomePage {
     private By accountDeletedVerification = By.xpath("//h2[@data-qa=\"account-deleted\"]/b");
     private By deleteContinueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
     private By loggedInAs = By.xpath("//a[contains(text(), \"Logged in as\")]");
+    private By testCaseButton = By.xpath("//a[@ href=\"/test_cases\"]//i [@class=\"fa fa-list\"]");
+    private By subscriptionText = By.xpath("//div[@class=\"single-widget\"]//h2");
+    private By subscriptionSearchField = By.xpath("//input[@id=\"susbscribe_email\"]");
+    private By subscriptionArrowButton = By.xpath("//i[@class=\"fa fa-arrow-circle-o-right\"]");
+    private By subscriptionSuccessMessage = By.xpath("//div[@class=\"alert-success alert\"]");
+    private By firstProductViewButton = By.xpath("//ul [@class=\"nav nav-pills nav-justified\"]//li//a[@href=\"/product_details/1\"]");
+
     //Actions
     public HomePage navigateToURL(String URL) {
         driver.browser().navigateToURL(URL);
@@ -54,6 +61,26 @@ public class HomePage {
         driver.element().click(deleteContinueButton);
         return this ;
     }
+    public  HomePage clickOnTestCaseButton(){
+        driver.element().click(testCaseButton);
+        return this ;
+    }
+    public  HomePage scrollDownToSubscribtionText(){
+        driver.element().scrollToElement(subscriptionText);
+        return this ;
+    }
+    public HomePage fillEmail(String email) {
+        driver.element().type(subscriptionSearchField, email);
+        return this;
+    }
+    public  HomePage clickOnSubscriptionButton(){
+        driver.element().click(subscriptionArrowButton);
+        return this ;
+    }
+    public  HomePage clickOnFirstProductViewButton(){
+        driver.element().click(firstProductViewButton);
+        return this ;
+    }
 
     //Assertions
     @Step("Validate that the user is logged in")
@@ -64,6 +91,11 @@ public class HomePage {
     @Step("Verify that home page is visible successfully")
     public HomePage validateHomePageVisibility() {
         driver.element().verifyThat(homePageLogoFeild).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that test cases button is visible successfully")
+    public HomePage validateTestCasesButtonVisibility() {
+        driver.element().verifyThat(testCaseButton).isVisible().perform();
         return this;
     }
     @Step("Verify that HomePage Product Button is visible successfully")
@@ -91,14 +123,25 @@ public class HomePage {
         driver.element().verifyThat(logoutButton).isVisible().perform();
         return this;
     }
-    @Step("Verify that DeleteAccountButton is visible successfully")
+    @Step("Verify that Delete Account Button is visible successfully")
     public HomePage validateDeleteAccountButtonVisibility() {
         driver.element().verifyThat(deleteAccountButton).isVisible().perform();
         return this;
     }
-    @Step("Verify that accountDeletedVerification is visible successfully")
+    @Step("Verify that account Deleted Verification is visible successfully")
     public HomePage validateAccountDeletedVerificationVisibility() {
         driver.element().verifyThat(accountDeletedVerification).isVisible().perform();
+        return this;
+    }
+    @Step("Verify text SUBSCRIPTION")
+    public HomePage validateSubscribtionTextContent() {
+        driver.element().assertThat(subscriptionText).text().contains("SUBSCRIPTION").perform();;
+        return this;
+    }
+    @Step("Verify Subscription success message")
+    public HomePage validateSubscriptionSuccessMessageVisibility() {
+        driver.element().waitToBeReady(subscriptionSuccessMessage);
+        driver.element().assertThat(subscriptionSuccessMessage).isVisible().perform();
         return this;
     }
 }

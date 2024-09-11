@@ -13,7 +13,6 @@ public class TestCase3LoginUserWithIncorrectEmailAndPassword {
 
     @BeforeClass
     public void beforeClass() {
-        // Load test data from JSON file
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/LoginTestData.json");
     }
 
@@ -27,11 +26,10 @@ public class TestCase3LoginUserWithIncorrectEmailAndPassword {
 
     @Test(description = "Login User with Incorrect Email And Password")
     private void testCase3LoginUserWithIncorrectEmailAndPassword() {
-        // Navigate to website URL
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
-                .validateHomePageVisibility()  // Assert that home page is visible
-                .clickOnSignupLoginButton();  // Click "Sign Up / Login" button
-        loginPage.validateVisibilityOfLoginToYourAccount()  // Verify Login to your account is visible
+                .validateHomePageVisibility()
+                .clickOnSignupLoginButton();
+        loginPage.validateVisibilityOfLoginToYourAccount()
                 .fillEmail(testData.getTestData("Email"))
                 .fillPassword(testData.getTestData("Password"))
                 .clickLoginButton() // Proceed to sign-up

@@ -30,7 +30,12 @@ public class CartPage {
     private By continueOnCartButton = By.xpath("//button[@class=\"btn btn-success close-checkout-modal btn-block\"]");
     private By removeProductButton = By.xpath("//tr[@id=\"product-1\"]//a[@class=\"cart_quantity_delete\"]");
     private By cartIsEmptyText  = By.xpath("//p[@class=\"text-center\"]/b");
-
+    private By cartInfo =  By.xpath("//div[@id=\"cart_info\"]");
+    private By signupLoginButton =  By.xpath("//a[@href=\"/login\"]/i");
+    private By subscriptionText = By.xpath("//div[@class=\"single-widget\"]//h2");
+    private By subscriptionSearchField = By.xpath("//input[@id=\"susbscribe_email\"]");
+    private By subscriptionArrowButton = By.xpath("//i[@class=\"fa fa-arrow-circle-o-right\"]");
+    private By subscriptionSuccessMessage = By.xpath("//div[@class=\"alert-success alert\"]");
     // Actions
     public CartPage clickOnCheckOutButton() {
         driver.element().click(checkOutButton);
@@ -48,6 +53,23 @@ public class CartPage {
         driver.element().click(removeProductButton);
         return this;
     }
+    public CartPage clickOnSignupLogintButton() {
+        driver.element().click(signupLoginButton);
+        return this;
+    }
+    public CartPage scrollDownToSubscribtionText(){
+        driver.element().scrollToElement(subscriptionText);
+        return this ;
+    }
+    public CartPage fillEmail(String email) {
+        driver.element().type(subscriptionSearchField, email);
+        return this;
+    }
+    public  CartPage clickOnSubscriptionButton(){
+        driver.element().click(subscriptionArrowButton);
+        return this ;
+    }
+
 
     //Asserations
     @Step("Verify that cart page is displayed")
@@ -55,6 +77,18 @@ public class CartPage {
         driver.element().verifyThat(checkOutButton).isVisible().perform();
         return this;
     }
+    // For One product Added Through Home Page Or Any Other Page
+    @Step("Verify that product added successfully")
+    public CartPage VerifyProductIsAddedToCart() {
+        driver.element().verifyThat(firstProductInCart).exists().perform();
+        return this;
+    }
+    @Step("Verify that product Quantity added successfully")
+    public CartPage VerifyProductQuantityAddedToCart() {
+        Validations.assertThat().object(firstProductQuantity).isEqualTo(4).perform();
+        return this;
+    }
+    // For Two product Added Through Home Page Or Any Other Page
     @Step("Verify that two products added successfully")
     public CartPage VerifyBothProductsAreAddedToCart() {
         driver.element().verifyThat(firstProductInCart).exists().perform();
@@ -94,6 +128,22 @@ public class CartPage {
     @Step("Verify that cart page is displayed")
     public CartPage validateCartIsEmpty() {
         driver.element().verifyThat(cartIsEmptyText).isVisible().perform();
+        return this;
+    }
+    @Step("Verify  all the products are visible in cart")
+    public CartPage validateProductsVisibilityInCart() {
+        driver.element().assertThat(cartInfo).isVisible().perform();
+        return this;
+    }
+    @Step("Verify text SUBSCRIPTION")
+    public CartPage validateSubscribtionTextContent() {
+        driver.element().assertThat(subscriptionText).text().contains("SUBSCRIPTION").perform();;
+        return this;
+    }
+    @Step("Verify Subscription success message")
+    public CartPage validateSubscriptionSuccessMessageVisibility() {
+        driver.element().waitToBeReady(subscriptionSuccessMessage);
+        driver.element().assertThat(subscriptionSuccessMessage).isVisible().perform();
         return this;
     }
 }
