@@ -27,6 +27,12 @@ public class HomePage {
     private By subscriptionArrowButton = By.xpath("//i[@class=\"fa fa-arrow-circle-o-right\"]");
     private By subscriptionSuccessMessage = By.xpath("//div[@class=\"alert-success alert\"]");
     private By firstProductViewButton = By.xpath("//ul [@class=\"nav nav-pills nav-justified\"]//li//a[@href=\"/product_details/1\"]");
+    private By categoryList = By.xpath("//div[@class=\"left-sidebar\"]/h2");
+    private By womenCategoryList = By.xpath("//a[@href=\"#Women\"]");
+    private By womenFirstCategory = By.xpath("//a[@href=\"/category_products/1\"]");
+    private By subCategoryTitleText = By.xpath("//h2[@class=\"title text-center\"]");
+    private By manCategory = By.xpath("//a[@ href=\"#Men\"]");
+    private By firstManSubCategory = By.xpath("//a[@href=\"/category_products/3\"]");
 
     //Actions
     public HomePage navigateToURL(String URL) {
@@ -51,6 +57,22 @@ public class HomePage {
     }
     public HomePage clickOnLogOutButton() {
         driver.element().click(logoutButton);
+        return this;
+    }
+    public HomePage clickOnWomenCategoryButton() {
+        driver.element().click(womenCategoryList);
+        return this;
+    }
+    public HomePage clickOnWomenFirstCategoryButton() {
+        driver.element().click(womenFirstCategory);
+        return this;
+    }
+    public HomePage clickOnManCategoryButton() {
+        driver.element().click(manCategory);
+        return this;
+    }
+    public HomePage clickOnFirstManSubCategoryButton() {
+        driver.element().click(firstManSubCategory);
         return this;
     }
     public  HomePage clickOnDeleteAccountButton(){
@@ -91,6 +113,23 @@ public class HomePage {
     @Step("Verify that home page is visible successfully")
     public HomePage validateHomePageVisibility() {
         driver.element().verifyThat(homePageLogoFeild).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that category list is visible successfully")
+    public HomePage validateCategoryListVisibility() {
+        driver.element().verifyThat(categoryList).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that category list is visible successfully")
+    public HomePage validateSubCategoryWomenPageVisibility() {
+        driver.element().verifyThat(subCategoryTitleText).isVisible().perform();
+        driver.element().assertThat(subCategoryTitleText).text().isEqualTo("WOMEN - DRESS PRODUCTS").perform();
+        return this;
+    }
+    @Step("Verify that category list is visible successfully")
+    public HomePage validateSubCategoryManPageVisibility() {
+        driver.element().verifyThat(subCategoryTitleText).isVisible().perform();
+        driver.element().assertThat(subCategoryTitleText).text().isEqualTo("MEN - TSHIRTS PRODUCTS").perform();
         return this;
     }
     @Step("Verify that test cases button is visible successfully")
