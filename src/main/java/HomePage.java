@@ -28,11 +28,11 @@ public class HomePage {
     private By subscriptionSuccessMessage = By.xpath("//div[@class=\"alert-success alert\"]");
     private By firstProductViewButton = By.xpath("//ul [@class=\"nav nav-pills nav-justified\"]//li//a[@href=\"/product_details/1\"]");
     private By categoryList = By.xpath("//div[@class=\"left-sidebar\"]/h2");
-    private By womenCategoryList = By.xpath("//a[@href=\"#Women\"]");
-    private By womenFirstCategory = By.xpath("//a[@href=\"/category_products/1\"]");
+    private By firstCategoryList = By.xpath("//a[@href=\"#Women\"]");
+    private By FirstSubCategory = By.xpath("//a[@href=\"/category_products/1\"]");
     private By subCategoryTitleText = By.xpath("//h2[@class=\"title text-center\"]");
-    private By manCategory = By.xpath("//a[@ href=\"#Men\"]");
-    private By firstManSubCategory = By.xpath("//a[@href=\"/category_products/3\"]");
+    private By secondCategory = By.xpath("//a[@ href=\"#Men\"]");
+    private By secondSubCategory = By.xpath("//a[@href=\"/category_products/3\"]");
 
     //Actions
     public HomePage navigateToURL(String URL) {
@@ -59,22 +59,24 @@ public class HomePage {
         driver.element().click(logoutButton);
         return this;
     }
+    // Category List Actions
     public HomePage clickOnWomenCategoryButton() {
-        driver.element().click(womenCategoryList);
+        driver.element().click(firstCategoryList);
         return this;
     }
     public HomePage clickOnWomenFirstCategoryButton() {
-        driver.element().click(womenFirstCategory);
+        driver.element().click(FirstSubCategory);
         return this;
     }
     public HomePage clickOnManCategoryButton() {
-        driver.element().click(manCategory);
+        driver.element().click(secondCategory);
         return this;
     }
     public HomePage clickOnFirstManSubCategoryButton() {
-        driver.element().click(firstManSubCategory);
+        driver.element().click(secondSubCategory);
         return this;
     }
+    //Delete Actions
     public  HomePage clickOnDeleteAccountButton(){
         driver.element().click(deleteAccountButton);
         return this ;
@@ -83,10 +85,16 @@ public class HomePage {
         driver.element().click(deleteContinueButton);
         return this ;
     }
+    //Homepage Actions
     public  HomePage clickOnTestCaseButton(){
         driver.element().click(testCaseButton);
         return this ;
     }
+    public  HomePage clickOnFirstProductViewButton(){
+        driver.element().click(firstProductViewButton);
+        return this ;
+    }
+    //Subscription Actions
     public  HomePage scrollDownToSubscribtionText(){
         driver.element().scrollToElement(subscriptionText);
         return this ;
@@ -99,12 +107,10 @@ public class HomePage {
         driver.element().click(subscriptionArrowButton);
         return this ;
     }
-    public  HomePage clickOnFirstProductViewButton(){
-        driver.element().click(firstProductViewButton);
-        return this ;
-    }
+
 
     //Assertions
+
     @Step("Validate that the user is logged in")
     public HomePage validateLogin(){
         driver.element().verifyThat(loggedInAs).isVisible().perform();
@@ -115,6 +121,8 @@ public class HomePage {
         driver.element().verifyThat(homePageLogoFeild).isVisible().perform();
         return this;
     }
+    //CategoryList Assertions
+
     @Step("Verify that category list is visible successfully")
     public HomePage validateCategoryListVisibility() {
         driver.element().verifyThat(categoryList).isVisible().perform();

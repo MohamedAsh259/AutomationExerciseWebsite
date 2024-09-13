@@ -13,7 +13,6 @@ public class ProductsPage {
     }
 
     //Locators
-    private By homePageProductButton = By.xpath("//ul[@class=\"nav navbar-nav\"]//a[@href=\"/products\"]");
     private By firstProductViewButton = By.xpath("//ul [@class=\"nav nav-pills nav-justified\"]//li//a[@href=\"/product_details/1\"]");
     private By secondProductVeiwButton = By.xpath("//ul[@class=\"nav nav-pills nav-justified\"]//a [@href=\"/product_details/2\"]");
     private By allProductsText = By.xpath("//h2[@class=\"title text-center\"]");
@@ -26,12 +25,12 @@ public class ProductsPage {
     private By secondProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"29\"]");
     private By thirdProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"30\"]");
     private By continueShopping = By.xpath("//button[@class=\"btn btn-success close-modal btn-block\"]");
-
+    private By brandList = By.xpath("//div[@class=\"brands_products\"]");
+    private By firstBrandName = By.xpath("//a[@href=\"/brand_products/Polo\"]");
+    private By brandTitleText = By.xpath("//h2[@class=\"title text-center\"]");
+    private By allProductsInBrand = By.xpath("//div[@class=\"features_items\"]");
+    private By secondBrand = By.xpath("//a[@href='/brand_products/H&M']");
    // Action
-    public ProductsPage clickOnProductButton() {
-        driver.element().click(homePageProductButton);
-        return this;
-    }
     public ProductsPage fillProductName(String productName){
         driver.element().type(searchTextField,productName);
         return this ;
@@ -64,9 +63,17 @@ public class ProductsPage {
         driver.element().click(secondProductVeiwButton);
         return this;
     }
+    //brand list actions
+    public ProductsPage clickOnFirstBrandName() {
+        driver.element().click(firstBrandName);
+        return this;
+    }
+    public ProductsPage clickOnSecondBrandName() {
+        driver.element().click(secondBrand);
+        return this;
+    }
 
 //Assertions
-
     @Step("Verify that all products text is visible successfully")
     public ProductsPage validateAllProductsVisibility() {
         driver.element().verifyThat(allProductsText).isVisible().perform();
@@ -85,6 +92,22 @@ public class ProductsPage {
     @Step("Verify that product list is visible successfully")
     public ProductsPage validateProductListVisibility() {
         driver.element().verifyThat(productList).isVisible().perform();
+        return this;
+    }
+    //Brand Assertions
+    @Step("Verify that brand list is visible successfully")
+    public ProductsPage validateBrandListVisibility() {
+        driver.element().verifyThat(brandList).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that user is navigated to brand page")
+    public ProductsPage validateBrandPageVisibility() {
+        driver.element().verifyThat(brandTitleText).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that brand products are displayed")
+    public ProductsPage validateBrandProductsVisibility() {
+        driver.element().verifyThat(allProductsInBrand).isVisible().perform();
         return this;
     }
 }
