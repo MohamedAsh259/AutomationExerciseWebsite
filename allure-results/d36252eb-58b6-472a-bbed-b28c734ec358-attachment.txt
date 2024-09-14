@@ -1,0 +1,46 @@
+
+[0;7m------------------------------------------------------------------------------------------------------------------------------------------------
+                                        Starting Execution: '1 out of 1' test cases in the current suite                                        
+                                    Test Method: 'TestCase19ViewAndCartBrandProducts.testCase19ViewBrandList'                                    
+                                                         Test Description: 'Brand View'                                                         
+------------------------------------------------------------------------------------------------------------------------------------------------
+[0m
+[ReportManager] Target URL: "https://automationexercise.com/" @13-09-2024 23:04:27.0351 PM
+[ReportManager] Initial URL: "about:blank" @13-09-2024 23:04:27.0381 PM
+[ReportManager] Navigate to url "https://automationexercise.com/". @13-09-2024 23:04:38.0719 PM
+[ReportManager] Verify that the element located by "By.xpath: //div[@class="left-sidebar"]/h2" is visible; hidden attribute is equal to "null". @13-09-2024 23:04:38.0744 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:04:38.0895 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-04-46-584_13092024' @13-09-2024 23:04:46.0600 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:04:46.0601 PM
+[ReportManager] Verification passed @13-09-2024 23:04:46.0602 PM
+[ReportManager] Moved the mouse to the middle of the element. @13-09-2024 23:04:46.0784 PM
+[ReportManager] Click " Products". @13-09-2024 23:04:54.0128 PM
+[ReportManager] Verify that the element located by "By.xpath: //div[@class="brands_products"]" is visible; hidden attribute is equal to "null". @13-09-2024 23:04:54.0130 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:04:54.0225 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-05-00-240_13092024' @13-09-2024 23:05:00.0249 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:00.0250 PM
+[ReportManager] Verification passed @13-09-2024 23:05:00.0250 PM
+[ReportManager] Moved the mouse to the middle of the element. @13-09-2024 23:05:00.0429 PM
+[ReportManager] Click "(6) POLO". @13-09-2024 23:05:03.0527 PM
+[ReportManager] Verify that the element located by "By.xpath: //h2[@class="title text-center"]" is visible; hidden attribute is equal to "null". @13-09-2024 23:05:03.0528 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:03.0618 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-05-04-543_13092024' @13-09-2024 23:05:04.0546 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:04.0547 PM
+[ReportManager] Verification passed @13-09-2024 23:05:04.0547 PM
+[ReportManager] Verify that the element located by "By.xpath: //div[@class="features_items"]" is visible; hidden attribute is equal to "null". @13-09-2024 23:05:04.0550 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:04.0645 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-05-05-450_13092024' @13-09-2024 23:05:05.0453 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:05.0453 PM
+[ReportManager] Verification passed @13-09-2024 23:05:05.0453 PM
+[ReportManager] Moved the mouse to the middle of the element. @13-09-2024 23:05:05.0612 PM
+[ReportManager] Click "(5) H&M". @13-09-2024 23:05:07.0695 PM
+[ReportManager] Verify that the element located by "By.xpath: //h2[@class="title text-center"]" is visible; hidden attribute is equal to "null". @13-09-2024 23:05:07.0697 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:07.0768 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-05-08-660_13092024' @13-09-2024 23:05:08.0663 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:08.0663 PM
+[ReportManager] Verification passed @13-09-2024 23:05:08.0663 PM
+[ReportManager] Verify that the element located by "By.xpath: //div[@class="features_items"]" is visible; hidden attribute is equal to "null". @13-09-2024 23:05:08.0665 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:08.0734 PM
+[ReportManager] Successfully created attachment 'Screenshot - Verify_23-05-09-560_13092024' @13-09-2024 23:05:09.0562 PM
+[ReportManager] Expected "null", and actual "null" @13-09-2024 23:05:09.0563 PM
+[ReportManager] Verification passed @13-09-2024 23:05:09.0563 PM

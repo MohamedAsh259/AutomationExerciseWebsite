@@ -1,0 +1,28 @@
+{
+  "WebSite-URL": "https://automationexercise.com/",
+
+  "SignupData": {
+  "Email": "GODOFWAR12120@gmail.com",
+  "Name-s": "Mohamed"
+},
+  "AccountInformation": {
+    "Name-A": "Mohamed",
+  "Password": "Mohamed259",
+    "Day": "25",
+    "Month":"9",
+    "Year":"1998"
+},
+  "AddressInformation": {
+    "addressFirstName":"cairo",
+    "addressLastName":"khanka",
+    "companyNameField":"ICE",
+    "addressField":"cairo",
+    "addressFieldTwo":"cairo-c",
+    "CountryName":"United States",
+    "stateField":"cairo",
+    "cityField":"Benha",
+    "zipCodeField":"0000",
+    "mobileNumber":"01113635939"
+  }
+
+}
