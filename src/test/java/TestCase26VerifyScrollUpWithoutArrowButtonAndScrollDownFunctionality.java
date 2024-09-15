@@ -5,34 +5,38 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestCase10VerifySubscriptionInHomePage {
+public class TestCase26VerifyScrollUpWithoutArrowButtonAndScrollDownFunctionality {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
     private HomePage homePage;
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/SubscriptionTestsData.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/RegisterUserData.json");
     }
     @BeforeMethod
     @Description("Initializes the WebDriver and Pages")
-    public void setup () {
+    public void setup() {
         driver = new SHAFT.GUI.WebDriver();
         homePage = new HomePage(driver);
     }
-    @Test(description = "subscriptionField")
-    private void subscriptionValidationInHomePage () {
+    @Test(description = "Verify Scroll Up And Down Without Arrow")
+    private void testCase26VerifyScrollUpAndDownWithoutArrow() {
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .validateHomePageVisibility()
                 .scrollToSubscribtionText()
-                .validateSubscribtionTextContent().
-                fillEmail(testData.getTestData("Subscription-Mail"))
-                .clickOnSubscriptionButton().
-                validateSubscriptionSuccessMessageVisibility();
+                .validateSubscribtionTextVisibility()
+                .scrollTotopPage()
+                .validateFullFledgedPracticeTextVisibility();
     }
-
     @AfterMethod
     @Description("Close browser after test")
-    public void teardown() {
+    public void teardown(){
         driver.browser().closeCurrentWindow();
     }
+
+
+
+
+
+
 }

@@ -4,12 +4,10 @@ import org.openqa.selenium.By;
 
 public class ProductDetailPage {
         private SHAFT.GUI.WebDriver driver;
-
         //Constructor
         public ProductDetailPage(SHAFT.GUI.WebDriver driver) {
             this.driver = driver;
         }
-
         //Locators
         private By addToCartButton = By.xpath("//span//button[@ type=\"button\"]");
         private By continueShoppingButton = By.xpath("//div[@class=\"modal-footer\"]//button[@class=\"btn btn-success close-modal btn-block\"]");
@@ -43,8 +41,6 @@ public class ProductDetailPage {
         driver.element().type(quantityNumberField, Quantity);
         return this;
     }
-
-
 //Assertions
     @Step("Verify that first product name is visible")
     public ProductDetailPage validateProductDetailPageVisibility(){
@@ -66,9 +62,4 @@ public class ProductDetailPage {
 
         return this;
     }
-
-
-
-
-
 }

@@ -11,21 +11,26 @@ public class SignupPage {
     }
 
     //Locators
+      //Account Information
     private By enterAccountInformationText = By.xpath("//b[contains(text(), 'Enter Account Information')]");
     private By createAccountnameField = By.xpath("//input[@name=\"name\"]");
     private By createAccountEmailField = By.xpath("//input[@name=\"email\"]");
     private By createAccountPasswordField = By.xpath("//input[@name=\"password\"]");
+     //DateOf Birth
     private By daysForDateOfBirth = By.xpath("//select[@name=\"days\"]");
     private By monthsForDateOfBirth = By.xpath("//select[@name=\"months\"]");
     private By yearsForDateOfBirth = By.xpath("//select[@name=\"years\"]");
+     // Select Radio Buttons
     private By tilteButton = By.xpath("//input[@id=\"id_gender1\"]");
     private By newsletter = By.xpath("//input[@id=\"newsletter\"]");
     private By speicalOfferButton = By.xpath("//input[@name=\"optin\"]");
+     //Address Content
     private By addressFirstNameField = By.xpath("//input[@name=\"first_name\"]");
     private By addressLastNameField = By.xpath("//input[@name=\"last_name\"]");
-    private By companyNameField = By.xpath("//input[@ name=\"company\"]");
     private By addressField = By.xpath("//input[@name=\"address1\"]");
     private By addressFieldTwo = By.xpath("//input[@name=\"address2\"]");
+     //Other Data
+    private By companyNameField = By.xpath("//input[@ name=\"company\"]");
     private By countryName = By.xpath("//select[@name=\"country\"]");
     private By stateName = By.xpath("//input[@name=\"state\"]");
     private By cityName = By.xpath("//input[@name=\"city\"]");
@@ -121,7 +126,6 @@ public class SignupPage {
         driver.element().click(continueButton);
         return this ;
     }
-
     //Assertions
     @Step("Verify that ENTER ACCOUNT INFORMATION is visible")
     public SignupPage verifyThatEnterAccountInformationIsVisible(){

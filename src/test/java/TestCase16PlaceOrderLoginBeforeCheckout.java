@@ -13,7 +13,6 @@ public class TestCase16PlaceOrderLoginBeforeCheckout {
     private ProductDetailPage productDetailPage;
     private CartPage cartPage;
     private LoginPage loginPage;
-    private SignupPage signupPage;
     private CheckoutPage checkoutPage;
     private PaymentPage paymentPage;
 
@@ -30,7 +29,6 @@ public class TestCase16PlaceOrderLoginBeforeCheckout {
         productDetailPage = new ProductDetailPage(driver);
         cartPage = new CartPage(driver);
         loginPage = new LoginPage(driver);
-        signupPage = new SignupPage(driver);
         checkoutPage = new CheckoutPage(driver);
         paymentPage = new PaymentPage(driver);
     }

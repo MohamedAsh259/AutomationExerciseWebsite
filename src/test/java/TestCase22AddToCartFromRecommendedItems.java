@@ -5,34 +5,34 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestCase10VerifySubscriptionInHomePage {
+public class TestCase22AddToCartFromRecommendedItems {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
     private HomePage homePage;
+    private CartPage cartPage;
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/SubscriptionTestsData.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/ReviewProductData.json");
     }
     @BeforeMethod
     @Description("Initializes the WebDriver and Pages")
-    public void setup () {
+    public void setup() {
         driver = new SHAFT.GUI.WebDriver();
         homePage = new HomePage(driver);
+        cartPage = new CartPage(driver);
     }
-    @Test(description = "subscriptionField")
-    private void subscriptionValidationInHomePage () {
+    @Test(description = "Shopping From Recommended Items")
+    private void testCase22VRecommendedProducts() {
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
-                .validateHomePageVisibility()
-                .scrollToSubscribtionText()
-                .validateSubscribtionTextContent().
-                fillEmail(testData.getTestData("Subscription-Mail"))
-                .clickOnSubscriptionButton().
-                validateSubscriptionSuccessMessageVisibility();
+                .scrollDownToRecommendedProducts()
+                .validateRecommendedProductsVisibility()
+                .clickOnAddToCartRecommendedProduct()
+                .clickOnViewCartRecommendedProduct();
+        cartPage.VerifyProductIsAddedToCart();
     }
-
     @AfterMethod
     @Description("Close browser after test")
-    public void teardown() {
+    public void teardown(){
         driver.browser().closeCurrentWindow();
     }
 }

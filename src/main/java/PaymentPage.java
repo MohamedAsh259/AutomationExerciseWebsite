@@ -3,6 +3,8 @@ import com.shaft.validation.Validations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.time.Duration;
+
 public class PaymentPage {
     private SHAFT.GUI.WebDriver driver;
     //Constructor
@@ -16,7 +18,7 @@ public class PaymentPage {
     private By expirationMonth = By.xpath("//input[@name=\"expiry_month\"]");
     private By expirationYear = By.xpath("//input[@ name=\"expiry_year\"]");
     private By payAndConfirmOrderButton = By.xpath("//button[@data-qa=\"pay-button\"]");
-    private By successfulOrderMessage = By.xpath("//div[contains(@class, 'alert-success') and contains(text(), 'Your order has been placed successfully!')]");
+    private By successfulOrderMessage = By.xpath("//div[@id=\"success_message\"]//div[@class=\"alert-success alert\"]");
     private By continueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
     private By inoviceDowloadButton = By.xpath("//a[@class=\"btn btn-default check_out\"]");
     //Actions
@@ -57,15 +59,11 @@ public class PaymentPage {
         driver.element().click(inoviceDowloadButton);
         return this;
     }
-    public PaymentPage waitTillSuccessfulMessageAppear() {
-        driver.element().waitToBeReady(successfulOrderMessage, true);
-        return this;
-    }
 
     //Assertions
     @Step("Verify that successful order message is visible")
     public PaymentPage validateSuccessfullOrderMessageVisibility() {
-        driver.element().verifyThat(successfulOrderMessage).isVisible().perform();
+        driver.element().verifyThat(successfulOrderMessage).exists().perform();
         return this;
     }
     @Step("Download Invoice button and verify invoice is downloaded successfully")

@@ -17,6 +17,7 @@ public class ProductsPage {
     private By secondProductVeiwButton = By.xpath("//ul[@class=\"nav nav-pills nav-justified\"]//a [@href=\"/product_details/2\"]");
     private By allProductsText = By.xpath("//h2[@class=\"title text-center\"]");
     private By productList = By.xpath("//div[@class=\"features_items\"]");
+    //Search Field
     private By searchTextField = By.xpath("//input[@name=\"search\"]");
     private By searchButton = By.xpath("//i[@class=\"fa fa-search\"]");
     private By searchedProductText = By.xpath("//h2[@class=\"title text-center\"]");
@@ -25,15 +26,24 @@ public class ProductsPage {
     private By secondProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"29\"]");
     private By thirdProductAddToCartButton = By.xpath("//div[@class=\"productinfo text-center\"]//a[@data-product-id=\"30\"]");
     private By continueShopping = By.xpath("//button[@class=\"btn btn-success close-modal btn-block\"]");
+    //Brand list
     private By brandList = By.xpath("//div[@class=\"brands_products\"]");
     private By firstBrandName = By.xpath("//a[@href=\"/brand_products/Polo\"]");
     private By brandTitleText = By.xpath("//h2[@class=\"title text-center\"]");
     private By allProductsInBrand = By.xpath("//div[@class=\"features_items\"]");
     private By secondBrand = By.xpath("//a[@href='/brand_products/H&M']");
-   // Action
-    public ProductsPage fillProductName(String productName){
-        driver.element().type(searchTextField,productName);
-        return this ;
+    //Review Product
+    private By reviewProductField = By.xpath("//a[@href=\"#reviews\"]");
+    private By reviewProductNameField = By.xpath("//input[@placeholder=\"Your Name\"]");
+    private By reviewProductEmailField = By.xpath("//input[@placeholder=\"Email Address\"]");
+    private By addReviewField = By.xpath("//textarea[@placeholder=\"Add Review Here!\"]");
+    private By submitReviewButton = By.xpath("//button[@id=\"button-review\"]");
+    private By successMessageAfterReview = By.xpath("//div[@class=\"alert-success alert\"]//span[@style=\"font-size: 20px;\"]");
+
+    // Action
+    public ProductsPage fillProductName(String productName) {
+        driver.element().type(searchTextField, productName);
+        return this;
     }
     public ProductsPage clickOnSearchButton() {
         driver.element().click(searchButton);
@@ -43,7 +53,7 @@ public class ProductsPage {
         driver.element().click(firstProductAddToCartButton);
         return this;
     }
-        public ProductsPage ClickOnAddSecondProductToCartButton() {
+    public ProductsPage ClickOnAddSecondProductToCartButton() {
         driver.element().click(secondProductAddToCartButton);
         return this;
     }
@@ -72,8 +82,24 @@ public class ProductsPage {
         driver.element().click(secondBrand);
         return this;
     }
-
-//Assertions
+    //Review Product
+    public ProductsPage fillReviewName(String Name) {
+        driver.element().type(reviewProductNameField, Name);
+        return this;
+    }
+    public ProductsPage fillReviewEmail(String Email) {
+        driver.element().type(reviewProductEmailField, Email);
+        return this;
+    }
+    public ProductsPage addReview(String Review) {
+        driver.element().type(addReviewField, Review);
+        return this;
+    }
+    public ProductsPage clickOnSubmitReviewButton() {
+        driver.element().click(submitReviewButton);
+        return this;
+    }
+    //Assertions
     @Step("Verify that all products text is visible successfully")
     public ProductsPage validateAllProductsVisibility() {
         driver.element().verifyThat(allProductsText).isVisible().perform();
@@ -108,6 +134,18 @@ public class ProductsPage {
     @Step("Verify that brand products are displayed")
     public ProductsPage validateBrandProductsVisibility() {
         driver.element().verifyThat(allProductsInBrand).isVisible().perform();
+        return this;
+    }
+    //Review Order Field
+    @Step("Verify that Review products are displayed")
+    public ProductsPage validateReviewProductsVisibility() {
+        driver.element().verifyThat(reviewProductField).isVisible().perform();
+        return this;
+    }
+    @Step("Verify that Review successful message are displayed")
+    public ProductsPage validateReviewSuccessfullMessageVisibility() {
+        driver.element().waitToBeReady(successMessageAfterReview);
+        driver.element().verifyThat(successMessageAfterReview).isVisible().perform();
         return this;
     }
 }

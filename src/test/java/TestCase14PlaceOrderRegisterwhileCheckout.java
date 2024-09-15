@@ -91,7 +91,8 @@ public class TestCase14PlaceOrderRegisterwhileCheckout {
                     .fillCardExpirationYear(testData.getTestData("CardInformation['fillCardExpirationYear']"))
                     .clickOnPayAndConfirmOrderButton();
             productDetailPage.navigateBack();
-            paymentPage.validateSuccessfullOrderMessageVisibility();
+            paymentPage.validateSuccessfullOrderMessageVisibility()
+                    .clickOnPayAndConfirmOrderButton();
             homePage.clickOnDeleteAccountButton()
                     .validateAccountDeletedVerificationVisibility();
         }

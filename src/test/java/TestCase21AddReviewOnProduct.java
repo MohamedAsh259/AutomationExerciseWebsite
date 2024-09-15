@@ -5,14 +5,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestCase19ViewAndCartBrandProducts {
+public class TestCase21AddReviewOnProduct {
     private SHAFT.GUI.WebDriver driver ;
     private SHAFT.TestData.JSON testData;
     private HomePage homePage;
     private ProductsPage productsPage;
     @BeforeClass
     public void beforeClass() {
-        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/RegisterUserData.json");
+        testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/ReviewProductData.json");
     }
     @BeforeMethod
     @Description("Initializes the WebDriver and Pages")
@@ -21,17 +21,18 @@ public class TestCase19ViewAndCartBrandProducts {
         homePage = new HomePage(driver);
         productsPage = new ProductsPage(driver);
     }
-    @Test(description = "Brand View")
-    private void testCase19ViewBrandList() {
+    @Test(description = "ProductReview")
+    private void testCase21AddReview() {
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .clickOnProductButton();
-        productsPage.validateBrandListVisibility()
-                .clickOnFirstBrandName()
-                .validateBrandPageVisibility()
-                .validateBrandProductsVisibility()
-                .clickOnSecondBrandName()
-                .validateBrandPageVisibility()
-                .validateBrandProductsVisibility();
+        productsPage.validateAllProductsVisibility()
+                .clickOnFirstProductViewButton()
+                .validateReviewProductsVisibility()
+                .fillReviewName(testData.getTestData("Name"))
+                .fillReviewEmail(testData.getTestData("Email"))
+                .addReview(testData.getTestData("Review-Comment"))
+                .clickOnSubmitReviewButton()
+                .validateReviewSuccessfullMessageVisibility();
     }
     @AfterMethod
     @Description("Close browser after test")

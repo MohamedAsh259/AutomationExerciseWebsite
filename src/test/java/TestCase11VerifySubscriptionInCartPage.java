@@ -10,12 +10,10 @@ public class TestCase11VerifySubscriptionInCartPage {
     private SHAFT.TestData.JSON testData;
     private HomePage homePage;
     private CartPage cartPage;
-
     @BeforeClass
     public void beforeClass() {
         testData = new SHAFT.TestData.JSON("src/test/resources/testDataFiles/TestData/SubscriptionTestsData.json");
     }
-
     @BeforeMethod
     @Description("Initializes the WebDriver and Pages")
     public void setup() {
@@ -23,9 +21,8 @@ public class TestCase11VerifySubscriptionInCartPage {
         homePage = new HomePage(driver);
         cartPage = new CartPage(driver);
     }
-
-    @Test(description = "subscriptionText")
-    private void subscriptionValidationInCart() {
+    @Test(description = "subscriptionField")
+    private void subscriptionInCartPage() {
         homePage.navigateToURL(testData.getTestData("WebSite-URL"))
                 .validateHomePageVisibility()
                 .clickOnCartButton();
@@ -35,7 +32,6 @@ public class TestCase11VerifySubscriptionInCartPage {
                 .clickOnSubscriptionButton().
                 validateSubscriptionSuccessMessageVisibility();
     }
-
     @AfterMethod
     @Description("Close browser after test")
     public void teardown() {

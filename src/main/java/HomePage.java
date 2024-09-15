@@ -9,8 +9,8 @@ public class HomePage {
     public HomePage(SHAFT.GUI.WebDriver driver) {
         this.driver = driver;
     }
-
     //Locators
+     //Home Page Buttons
     private By homePageLogoFeild = By.xpath("//div[@class=\"logo pull-left\"]//img[@src=\"/static/images/home/logo.png\"]");
     private By homePageProductButton = By.xpath("//ul[@class=\"nav navbar-nav\"]//a[@href=\"/products\"]");
     private By homePageCartButton = By.xpath("//ul[@class=\"nav navbar-nav\"]//a[@href=\"/view_cart\"]");
@@ -18,14 +18,18 @@ public class HomePage {
     private By contactUsButton = By.xpath("//a[@href=\"/contact_us\"]");
     private By logoutButton = By.xpath("//a[@href=\"/logout\"]");
     private By deleteAccountButton = By.xpath("//a[@href=\"/delete_account\"]");
-    private By accountDeletedVerification = By.xpath("//h2[@data-qa=\"account-deleted\"]/b");
     private By deleteContinueButton = By.xpath("//a[@data-qa=\"continue-button\"]");
-    private By loggedInAs = By.xpath("//a[contains(text(), \"Logged in as\")]");
     private By testCaseButton = By.xpath("//a[@ href=\"/test_cases\"]//i [@class=\"fa fa-list\"]");
+    private By moveUpButton = By.xpath("//a[@id=\"scrollUp\"]//i [@class=\"fa fa-angle-up\"]");
+     //Delete Button
+    private By accountDeletedVerification = By.xpath("//h2[@data-qa=\"account-deleted\"]/b");
+    private By loggedInAs = By.xpath("//a[contains(text(), \"Logged in as\")]");
+    //Subscription Field
     private By subscriptionText = By.xpath("//div[@class=\"single-widget\"]//h2");
     private By subscriptionSearchField = By.xpath("//input[@id=\"susbscribe_email\"]");
     private By subscriptionArrowButton = By.xpath("//i[@class=\"fa fa-arrow-circle-o-right\"]");
     private By subscriptionSuccessMessage = By.xpath("//div[@class=\"alert-success alert\"]");
+     //Products Field
     private By firstProductViewButton = By.xpath("//ul [@class=\"nav nav-pills nav-justified\"]//li//a[@href=\"/product_details/1\"]");
     private By categoryList = By.xpath("//div[@class=\"left-sidebar\"]/h2");
     private By firstCategoryList = By.xpath("//a[@href=\"#Women\"]");
@@ -33,7 +37,12 @@ public class HomePage {
     private By subCategoryTitleText = By.xpath("//h2[@class=\"title text-center\"]");
     private By secondCategory = By.xpath("//a[@ href=\"#Men\"]");
     private By secondSubCategory = By.xpath("//a[@href=\"/category_products/3\"]");
-
+     //Recommended Products
+    private By recommendedProductsField = By.xpath("//div[@class=\"recommended_items\"]//h2[@class=\"title text-center\"]");
+    private By firstRecommendedAddToCartButton = By.xpath("//div[@class=\"recommended_items\"]//a[@data-product-id=\"1\"]");
+    private By veiwCartRecommendedButton = By.xpath("//div[@class=\"modal-content\"]//a[@href=\"/view_cart\"]");
+     //General Locator
+     private By fullFledgedPracticeArea = By.xpath("//div[@class=\"col-sm-12\"]//div[@class=\"carousel-inner\"]");
     //Actions
     public HomePage navigateToURL(String URL) {
         driver.browser().navigateToURL(URL);
@@ -95,10 +104,15 @@ public class HomePage {
         return this ;
     }
     //Subscription Actions
-    public  HomePage scrollDownToSubscribtionText(){
-        driver.element().scrollToElement(subscriptionText);
+    public  HomePage scrollToSubscribtionText(){
+        driver.element().click(subscriptionText);
         return this ;
     }
+    public  HomePage scrollTotopPage(){
+        driver.element().click(fullFledgedPracticeArea);
+        return this ;
+    }
+
     public HomePage fillEmail(String email) {
         driver.element().type(subscriptionSearchField, email);
         return this;
@@ -107,10 +121,25 @@ public class HomePage {
         driver.element().click(subscriptionArrowButton);
         return this ;
     }
-
+    public  HomePage clickOnMoveUpButton(){
+        driver.element().click(moveUpButton);
+        return this ;
+    }
+    //Recommended Products
+    public  HomePage scrollDownToRecommendedProducts(){
+        driver.element().scrollToElement(recommendedProductsField);
+        return this ;
+    }
+    public  HomePage clickOnAddToCartRecommendedProduct(){
+        driver.element().click(firstRecommendedAddToCartButton);
+        return this ;
+    }
+    public  HomePage clickOnViewCartRecommendedProduct(){
+        driver.element().click(veiwCartRecommendedButton);
+        return this ;
+    }
 
     //Assertions
-
     @Step("Validate that the user is logged in")
     public HomePage validateLogin(){
         driver.element().verifyThat(loggedInAs).isVisible().perform();
@@ -122,7 +151,6 @@ public class HomePage {
         return this;
     }
     //CategoryList Assertions
-
     @Step("Verify that category list is visible successfully")
     public HomePage validateCategoryListVisibility() {
         driver.element().verifyThat(categoryList).isVisible().perform();
@@ -180,9 +208,21 @@ public class HomePage {
         driver.element().verifyThat(accountDeletedVerification).isVisible().perform();
         return this;
     }
-    @Step("Verify text SUBSCRIPTION")
+    @Step("Verify that Full-Fledged practice website for Automation Engineers Text Is Visible")
+    public HomePage validateFullFledgedPracticeTextVisibility() {
+        driver.element().waitToBeReady(fullFledgedPracticeArea);
+        driver.element().verifyThat(fullFledgedPracticeArea).isVisible().perform();
+        return this;
+    }
+     // Subscription Validation
+    @Step("Verify Text Subscription")
     public HomePage validateSubscribtionTextContent() {
-        driver.element().assertThat(subscriptionText).text().contains("SUBSCRIPTION").perform();;
+        driver.element().assertThat(subscriptionText).text().contains("SUBSCRIPTION").perform();
+        return this;
+    }
+    @Step("Verify Subscription Visibility")
+    public HomePage validateSubscribtionTextVisibility() {
+        driver.element().assertThat(subscriptionText).isVisible().perform();
         return this;
     }
     @Step("Verify Subscription success message")
@@ -191,4 +231,12 @@ public class HomePage {
         driver.element().assertThat(subscriptionSuccessMessage).isVisible().perform();
         return this;
     }
+    //Recommended Products Validations
+    @Step("Verify Recommended Products visibility")
+    public HomePage validateRecommendedProductsVisibility() {
+        driver.element().assertThat(recommendedProductsField).isVisible().perform();
+        return this;
+    }
+
+
 }
